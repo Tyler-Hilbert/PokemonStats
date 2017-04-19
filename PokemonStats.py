@@ -1,14 +1,11 @@
 import pandas as pd
-import pylab
 
 pokemon_df = pd.read_csv("pokemon.csv")
 
-print(pokemon_df['Type_1'].value_counts() + pokemon_df['Type_2'].value_counts())
+stat_cols = ['HP', 'Attack', 'Defense', 'Sp_Atk', 'Sp_Def','Speed', 'Catch_Rate']
+type_cols = ['Type_1', 'Type_2']
+melted = pd.melt(pokemon_df, stat_cols, type_cols, value_name='Type')
 
-stats = pokemon_df.groupby('Type_1').mean() + pokemon_df.groupby('Type_2').mean()
 
-print(stats)
-
-# Todo - get these plots to work ##
-#print (stats.hist(bins=15))
-#pylab.show()
+described_stats = melted.groupby('Type')[stat_cols].describe()
+described_stats.to_csv('described_stats.csv')
