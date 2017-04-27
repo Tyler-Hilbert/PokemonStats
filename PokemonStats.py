@@ -1,4 +1,8 @@
 import pandas as pd
+import matplotlib.pyplot as plt; plt.rcdefaults()
+import numpy as np
+import matplotlib.pyplot as plt
+
 
 pokemon_df = pd.read_csv("pokemon.csv")
 
@@ -23,8 +27,29 @@ print(pokemon_df['Body_Style'].value_counts())
 
 
 
+
+
 # Find highest HP
 #types = set(melted["Type"])
 #for type_ in types:
 #	print(melted["HP"][melted["Type"]==type])
 #	print(melted["HP"][melted["Type"]==type].mean())
+
+
+
+# Print
+print("\nGraphing\n")
+
+specific_cols = ['HP', 'Attack', 'Defense', 'Sp_Atk', 'Sp_Def','Speed']
+stats = melted[specific_cols][melted['Type']=="Fire"].mean()
+
+objects = ('HP', 'Attack', 'Defense', 'Sp_Atk', 'Sp_Def','Speed') # TODO find a way to convert this without retyping
+y_pos = np.arange(len(objects))
+#performance = [10,8,6,4,2,1]
+ 
+plt.bar(y_pos, stats, align='center', alpha=0.5)
+plt.xticks(y_pos, stat_cols)
+plt.ylabel('Base')
+plt.title('Fire stats')
+ 
+plt.show()
