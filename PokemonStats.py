@@ -27,14 +27,13 @@ print(pokemon_df['Body_Style'].value_counts())
 
 
 
-
-
-
 # Print
 print("\nGraphing\n")
 
 types = set(melted["Type"])
 for type in types:
+	plt.figure()
+	
 	specific_cols = ['HP', 'Attack', 'Defense', 'Sp_Atk', 'Sp_Def','Speed']
 	stats = melted[specific_cols][melted['Type']==type].mean()
 
@@ -47,4 +46,4 @@ for type in types:
 	title = type + ' stats'
 	plt.title(title)
 	 
-	plt.show()
+plt.show()
