@@ -43,7 +43,7 @@ for type in types:
 	plt.bar(y_pos, stats, align='center', alpha=0.5)
 	plt.xticks(y_pos, stat_cols)
 	plt.ylabel('Base')
-	title = type + ' stats'
+	title = 'Average stats of all ' + type + ' pokemon'
 	plt.title(title)
 	 
 plt.show()
